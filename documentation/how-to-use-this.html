@@ -98,7 +98,23 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="how-to-use-this">How to use this</h1><p>This is a section header</p>
+            <h1 id="how-to-use-this">How to use this</h1><p>Using this wiki doesn&rsquo;t require any programming – just some git and Github manipulation.</p>
+<h2 id="initial-set-up">Initial set-up</h2><h3 id="1-fork-this-repo">1. Fork this repo</h3><p>Click the <strong>Fork</strong> button on the Github repo.</p>
+<h3 id="2-update-the-submodule-to-point-at-your-new-wiki">2. Update the submodule to point at your new wiki</h3><p>Clone the repository locally:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>git clone https://github.com/&lt;you&gt;/&lt;your-new-repo&gt; &amp;&amp; cd $_
+</code></pre></div><p>Remove the submodule link to this wiki:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>git submodule deinit --all
+rm -rf .git/modules/*
+git rm -rf .gitmodules wiki
+</code></pre></div><p>Add the submodule link to your wiki:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>git submodule add https://github.com/&lt;you&gt;/&lt;your-new-repo&gt;.wiki wiki
+</code></pre></div><h3 id="3-update-the-tech-docs-config">3. Update the tech docs config</h3><p>Edit the <code>config/tech-docs.yml</code> file and fill out information from your own service. See the <a href="https://tdt-documentation.london.cloudapps.digital">tech-docs-template documentation</a> for how to do this.</p>
+<p>Commit and push the changes:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>git commit -a
+git push origin master
+</code></pre></div><h3 id="4-enable-github-pages-or-use-another-deployment-step">4. Enable Github Pages (or use another deployment step)</h3><p>Github Actions will automatically build and push your wiki to the <code>gh-pages</code> branch of your repository.</p>
+<p>Go to your repository settings and enable Github Pages, and specify the <code>gh-pages</code> branch as the target. After a few minutes, your new site will be available.</p>
+<h2 id="editing-the-content">Editing the content</h2><p>When you save an edit to your Github Wiki, the changes will be synced automatically to Github Pages. This can take a few minutes.</p>
 
             
           </main>
